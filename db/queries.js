@@ -5,7 +5,36 @@ async function getBooks () {
     return rows;
 }
 
+async function addBook(title, author, description, pages) {
+    const sqlQuery = `
+    INSERT INTO books
+    (title, author, description, pages)
+    VALUES
+        ($1, $2, $3, $4)
+    RETURNING *;
+    `;
+
+    const {rows} = await pool.query(sqlQuery, [title, author, description, pages]);
+    console.log(rows);
+    return rows;
+
+}
+
+async function deleteTheBook(id) {
+    const sqlQuery = `
+        DELETE * FROM books
+        WHERE id = $1;
+    `
+
+    const {rows} = await pool.query(sqlQuery, [id]);
+    console.log(rows);
+    return rows;
+
+}
+
 module.exports = {
     getBooks,
+    addBook,
+    deleteTheBook
     
 }

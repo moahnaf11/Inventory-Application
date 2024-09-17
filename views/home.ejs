@@ -7,6 +7,25 @@
     <title>Inventory App</title>
 </head>
 <body>
+    <%- include("main") %>
+
+    <main>
+        <% if (booksData.length > 0) { %>
+            <% booksData.forEach((book, index) => {  %>
+                <div class=" card card-<%= index %>">
+                    <h1><%= book.title %></h1>
+                    <div><%= book.pages %> pages</div>
+                    <a href="/<%= book.id %>">View book details</a>
+                    <form action="/" method="post">
+                        <button>Delete Book</button>
+                    </form>
+                </div>
+
+            <% }) %>
+        <% } %>
+        
+    </main>
+
     
 
 
