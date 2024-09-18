@@ -22,9 +22,9 @@ async function addBook(title, author, description, pages) {
 
 async function deleteTheBook(id) {
     const sqlQuery = `
-        DELETE * FROM books
+        DELETE FROM books
         WHERE id = $1;
-    `
+    `;
 
     const {rows} = await pool.query(sqlQuery, [id]);
     console.log(rows);
@@ -32,9 +32,40 @@ async function deleteTheBook(id) {
 
 }
 
+async function getTheBook(id) {
+    const sqlQuery = `
+        SELECT * FROM books
+        WHERE id = $1;    
+    `;
+
+    const {rows} = await pool.query(sqlQuery, [id]);
+    console.log(rows);
+    return rows;
+}
+
+
+async function updateBook (id, title, author, description, pages) {
+    const sqlQuery = `
+        UPDATE books
+        SET title = $2, author = $3, description = $4, pages = $5
+        WHERE id = $1
+        RETURNING *;
+    `;
+    const {rows} = await pool.query(sqlQuery, [id, title, author, description, pages]);
+    console.log(rows);
+    return rows;
+
+
+
+}
+
+
+
 module.exports = {
     getBooks,
     addBook,
-    deleteTheBook
+    deleteTheBook,
+    getTheBook,
+    updateBook
     
 }

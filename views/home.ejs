@@ -16,9 +16,12 @@
                     <h1><%= book.title %></h1>
                     <div><%= book.pages %> pages</div>
                     <a href="/<%= book.id %>">View book details</a>
-                    <form action="/" method="post">
-                        <button>Delete Book</button>
+                    <form class="delete" action="/" method="post">
+                        <input type="hidden" name="id" value="<%= book.id %>">
+                        <button class="del" type="submit">Delete Book</button>
                     </form>
+
+                    <a href="/update?id=<%= book.id %>">Update book</a>
                 </div>
 
             <% }) %>

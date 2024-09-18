@@ -53,7 +53,7 @@ div.card h1, div.card div, div.card a {
     text-align: center;
 }
 
-form {
+form.submission {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -66,26 +66,40 @@ form {
     height: min-content;
 }
 
-form div {
+form.submission div {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-form label {
+form.submission label {
     min-width: 100px;
 }
 
-form input {
+form.submission input {
     flex-grow: 1;
 }
 
-form button {
+form.submission button {
     min-width: 200px;
     align-self: center;
     padding: 10px 0;
     border-radius: 10px;
     background-color: #16a34a;
+}
+
+form.delete .del {
+    min-width: 0px;
+    width: auto;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #ef4444;
+    
+}
+
+form.delete {
+    display: flex;
+    justify-content: center;
 }
 
 
